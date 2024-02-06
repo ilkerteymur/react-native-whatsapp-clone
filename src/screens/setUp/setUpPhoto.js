@@ -29,6 +29,7 @@ const SetUpPhoto = ({route}) => {
       surname: surname,
       photo: photo,
       phone: phone,
+      status: true,
     };
     firestore()
       .collection('Users')
@@ -38,6 +39,7 @@ const SetUpPhoto = ({route}) => {
           'Başarılı',
           'Başarılı bir şekilde kaydınız oluşturulmustur',
         );
+        navigation.navigate(TABMENU);
       })
       .catch(error => {
         console.log(error);

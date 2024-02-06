@@ -3,4 +3,9 @@ const setAvatarText = (firstName, lastName) => {
   const lastNameControl = lastName ? lastName.charAt(0).toUpperCase() : 'a';
   return `${firstNameControl} ${lastNameControl}`;
 };
-export {setAvatarText};
+const compareUserName = (firstName, lastName) => {
+  const firstNameControl = firstName ? firstName : 'b';
+  const lastNameControl = lastName ? lastName : 'a';
+  return `${firstNameControl} ${lastNameControl}`;
+};
+export {setAvatarText, compareUserName};

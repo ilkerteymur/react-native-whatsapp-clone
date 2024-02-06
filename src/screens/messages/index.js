@@ -7,14 +7,36 @@ import {
   Image,
   FlatList,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from '../../components/router/header';
+import firestore from '@react-native-firebase/firestore';
 import AppColors from '../../utils/colors';
 import FloatActionButton from '../../components/ui/floatActionButton';
 import {messages} from '../../utils/mockData';
 import MessageCard from '../../components/messages/messageCard';
 
 const Message = () => {
+  const [messages, setMessages] = useState([]);
+  const getMessages = () => {
+    firestore()
+      .collection('messages')
+      .doc('CtU7Kqdy4GsCzBEzavLN')
+      .get()
+      .then(documentSnapshot => {
+        let userMessages = [];
+        console.log('User exists: ', documentSnapshot.exists);
+
+        if (documentSnapshot.exists) {
+          console.log('User data: ', documentSnapshot.data());
+          userMessages.push(documentSnapshot.data());
+          setMessages(userMessages);
+        }
+      });
+  };
+
+  useEffect(() => {
+    getMessages();
+  }, []);
   return (
     <SafeAreaView style={styles.container}>
       <Header

@@ -2,10 +2,9 @@ import {StyleSheet, Text, Pressable, View} from 'react-native';
 import React from 'react';
 import Avatar from '../ui/avatar';
 import AppColors from '../../utils/colors';
-import Badge from '../ui/badge';
 import {compareUserName} from '../../utils/functions';
 
-const MessageCard = ({item}) => {
+const ContactCard = ({item}) => {
   return (
     <Pressable style={styles.container}>
       <View>
@@ -21,15 +20,15 @@ const MessageCard = ({item}) => {
         <Text style={{fontSize: 18, fontWeight: '500'}}>
           {compareUserName(item.name, item.surname)}
         </Text>
-        <Text style={{fontSize: 14, color: AppColors.Neutral.Gray}}>
-          {item.value}
-        </Text>
-      </View>
-      <View style={{alignItems: 'flex-end'}}>
-        <Text style={{fontSize: 14, color: AppColors.Neutral.Gray}}>
-          {item.time}
-        </Text>
-        {item.count ? <Badge count={item.count} /> : null}
+        {item.status ? (
+          <Text style={{fontSize: 14, color: AppColors.Accent.Green}}>
+            Online
+          </Text>
+        ) : (
+          <Text style={{fontSize: 14, color: AppColors.Neutral.Gray}}>
+            Last seen today at {item.lastSeen}
+          </Text>
+        )}
       </View>
     </Pressable>
   );
@@ -44,4 +43,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MessageCard;
+export default ContactCard;

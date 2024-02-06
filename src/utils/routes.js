@@ -7,3 +7,4 @@ export const MESSAGE = 'Message';
 export const CONTACTS = 'Contacts';
 export const CALL = 'Call';
 export const PROFILE = 'Profile';
+export const ADDCONTACT = 'Add contact';
